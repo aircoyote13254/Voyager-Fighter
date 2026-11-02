@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ce1d933202ca191448222cdbab602d70
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fist: {instanceID: 0}
+  - foot: {instanceID: 0}
+  - defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - flashMaterial: {fileID: 2100000, guid: f8464f9e3dac7a241833fb45242cdfd4, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
