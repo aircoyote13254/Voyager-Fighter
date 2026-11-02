@@ -160,6 +160,7 @@ public class myplayer : MonoBehaviour
         }
     }
 
+
     private void Flash()
     {
         if (invulnerable)
@@ -167,6 +168,7 @@ public class myplayer : MonoBehaviour
             flashTimer += Time.deltaTime;
             if (flashTimer >= flashTime)
             {
+                flashTimer = 0f;
                 ToggleFlash();
             }
         }
