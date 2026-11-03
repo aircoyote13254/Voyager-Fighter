@@ -90,17 +90,19 @@ public class myplayer : MonoBehaviour
     private void Movement()
     {
         int movementDirection = 0;//1 is forwards, -1 is backwards, 0 is still
-        if(Input.GetKey(moveForwardKey))
+
+        if (Input.GetKey(moveForwardKey))
         {
             movementDirection = 1;
-  
-        }        
-        if(Input.GetKey(moveBackwardKey))
+
+        }
+        if (Input.GetKey(moveBackwardKey))
         {
             movementDirection = -1;
-  
+
         }
         animator.SetInteger("movementDirection", movementDirection);
+
         body.linearVelocity = new Vector2(movementDirection * speed, body.linearVelocity.y);
     }
 
