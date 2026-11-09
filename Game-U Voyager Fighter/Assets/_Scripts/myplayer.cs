@@ -18,6 +18,7 @@ public class myplayer : MonoBehaviour
     Rigidbody2D body;
     Animator animator;
     Collider2D bodyCollider;
+    Collider2D footCollider;
 
     public KeyCode punch = KeyCode.E;
     public KeyCode kick = KeyCode.Q;
@@ -39,6 +40,17 @@ public class myplayer : MonoBehaviour
 
         renderers = GetComponentsInChildren<SpriteRenderer>();
         flashTime = invulnerablityTime / flashes;
+
+        BoxCollider2D[] boxes = GetComponentsInChildren<BoxCollider2D>();
+        foreach (BoxCollider2D box in boxes)
+        {
+            if (box.gameObject.name == "feet_front")
+            {
+                footCollider = box;
+                footCollider.enabled = false;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +63,7 @@ public class myplayer : MonoBehaviour
         Attack("kick", kick);
         Flash();
         Invincibility();
+
     }
 
     private void ToggleFlash()
@@ -117,8 +130,12 @@ public class myplayer : MonoBehaviour
         if (Input.GetKey(key))
         {
             animator.SetBool(varible, true);
-
         }  
+
+        if (Input.GetKey(kick))
+        {
+            footCollider.enabled = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -145,6 +162,10 @@ public class myplayer : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hit02"))
         {
             animator.SetBool("hit02", false);
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Kick"))
+        {
+            footCollider.enabled = animator.GetBool("kick");
         }
     }
 
