@@ -110,7 +110,9 @@ public class myplayer : MonoBehaviour
             {
                 movementDirection = 1;
                 Vector3 scale = transform.localScale;
-                scale.x = 0.5f;
+                scale.x = 
+                    
+                    0.5f;
                 transform.localScale = scale;
             }
             if (Input.GetKey(moveBackwardKey))
@@ -154,7 +156,17 @@ public class myplayer : MonoBehaviour
             {
                 health -= 5;
                 // health = health -5
-                animator.SetBool("hit02", true);
+
+
+                if (collision.gameObject.name == "feet_front")
+                {
+                    animator.SetBool("hit02", true);
+                }
+                else if (collision.gameObject.name == "hand_punchfront")
+                {
+                    animator.SetBool("hit01", true);
+                }
+
                 invulnerable = true;
                 ToggleFlash();
             }
@@ -170,6 +182,10 @@ public class myplayer : MonoBehaviour
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Kick"))
         {
             footCollider.enabled = animator.GetBool("kick");
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hit01"))
+        {
+            animator.SetBool("hit01", false);
         }
     }
 
