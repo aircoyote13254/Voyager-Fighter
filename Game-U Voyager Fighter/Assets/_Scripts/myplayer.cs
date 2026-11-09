@@ -109,12 +109,16 @@ public class myplayer : MonoBehaviour
             if (Input.GetKey(moveForwardKey))
             {
                 movementDirection = 1;
-
+                Vector3 scale = transform.localScale;
+                scale.x = 0.5f;
+                transform.localScale = scale;
             }
             if (Input.GetKey(moveBackwardKey))
             {
                 movementDirection = -1;
-
+                Vector3 scale = transform.localScale;
+                scale.x = -0.5f;
+                transform.localScale = scale;
             }
         }
 
