@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class myplayer : MonoBehaviour
@@ -109,25 +110,35 @@ public class myplayer : MonoBehaviour
             if (Input.GetKey(moveForwardKey))
             {
                 movementDirection = 1;
-                Vector3 scale = transform.localScale;
-                scale.x = 
-                    
-                    0.5f;
-                transform.localScale = scale;
             }
             if (Input.GetKey(moveBackwardKey))
             {
                 movementDirection = -1;
-                Vector3 scale = transform.localScale;
-                scale.x = -0.5f;
-                transform.localScale = scale;
             }
         }
+
+        CalculateMovement(movementDirection);
 
         animator.SetInteger("movementDirection", movementDirection);
 
         body.linearVelocity = new Vector2(movementDirection * speed, body.linearVelocity.y);
     }
+
+    private void CalculateMovement(int dir)
+    {
+        Vector3 scale = transform.localScale;
+
+        if (dir == -1)
+        {
+            scale.x = -0.5f;
+        }
+        else if (dir == 1)
+        {
+            scale.x = 0.5f;
+        }
+
+        transform.localScale = scale;
+    }   
 
     private void Attack(string varible, KeyCode key) 
     {
