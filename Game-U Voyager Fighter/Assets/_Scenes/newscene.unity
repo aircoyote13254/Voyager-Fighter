@@ -171,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405592, guid: 821d914842175471890a315967b811cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7618444
+      value: -3.81
       objectReference: {fileID: 0}
     - target: {fileID: 405592, guid: 821d914842175471890a315967b811cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -203,6 +203,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405592, guid: 821d914842175471890a315967b811cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405592, guid: 821d914842175471890a315967b811cd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -338,15 +342,19 @@ MonoBehaviour:
   health: 100
   invulnerablityTime: 1
   flashTime: 0
+  shootDelay: 0.5
   punch: 101
   kick: 113
   moveForwardKey: 100
   moveBackwardKey: 97
   jumpKey: 119
+  shootKey: 115
   fist: {fileID: 1928039747}
   foot: {fileID: 653598517}
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   flashMaterial: {fileID: 2100000, guid: f8464f9e3dac7a241833fb45242cdfd4, type: 2}
+  projectilePrefab: {fileID: 8271085521471939495, guid: 32e2bdf0040951f44a28a06e5506a04c,
+    type: 3}
 --- !u!95 &190781653
 Animator:
   serializedVersion: 7
@@ -614,7 +622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 416066, guid: c346dd6a370804657ac2b301b4b3bc6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7175808
+      value: -3.82
       objectReference: {fileID: 0}
     - target: {fileID: 416066, guid: c346dd6a370804657ac2b301b4b3bc6a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1531,15 +1539,19 @@ MonoBehaviour:
   health: 100
   invulnerablityTime: 1
   flashTime: 0
+  shootDelay: 0.5
   punch: 265
   kick: 263
   moveForwardKey: 262
   moveBackwardKey: 260
   jumpKey: 264
+  shootKey: 261
   fist: {fileID: 1574883582}
   foot: {fileID: 178953760}
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   flashMaterial: {fileID: 2100000, guid: f8464f9e3dac7a241833fb45242cdfd4, type: 2}
+  projectilePrefab: {fileID: 8271085521471939495, guid: 32e2bdf0040951f44a28a06e5506a04c,
+    type: 3}
 --- !u!61 &1955656016
 BoxCollider2D:
   m_ObjectHideFlags: 0

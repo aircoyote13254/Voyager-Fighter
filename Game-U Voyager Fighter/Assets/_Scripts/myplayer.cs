@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class myplayer : MonoBehaviour
 {
-    private SpriteRenderer[] renderers; 
+    private SpriteRenderer[] renderers;
     private float invulnerablityTimer = 0f;
     private float flashTimer = 0f;
+    private float shootDelayTimer = 0f;
     private bool invulnerable = false;
     private bool flash = false;
+    private bool canShoot = true;
     private int flashes = 1;
 
     public float speed = 3;
@@ -15,6 +17,7 @@ public class myplayer : MonoBehaviour
     public float health = 100f;
     public float invulnerablityTime = 0.18f;
     public float flashTime;
+    public float shootDelay = 1f;
 
     Rigidbody2D body;
     Animator animator;
@@ -26,11 +29,13 @@ public class myplayer : MonoBehaviour
     public KeyCode moveForwardKey = KeyCode.D;
     public KeyCode moveBackwardKey = KeyCode.A;
     public KeyCode jumpKey = KeyCode.W;
+    public KeyCode shootKey = KeyCode.S;
 
     public Collider2D fist;
     public Collider2D foot;
     public Material defaultMaterial;
     public Material flashMaterial;
+    public Projectile projectilePrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,7 +44,7 @@ public class myplayer : MonoBehaviour
         animator = GetComponent<Animator>();
         bodyCollider = GetComponent<Collider2D>();
 
-        renderers = GetComponentsInChildren<SpriteRenderer>();
+        renderers = GetComponentsInChildren<SpriteRenderer>(true);
         flashTime = invulnerablityTime / flashes;
 
         BoxCollider2D[] boxes = GetComponentsInChildren<BoxCollider2D>();
@@ -62,6 +67,7 @@ public class myplayer : MonoBehaviour
         Movement();
         Attack("punch", punch);
         Attack("kick", kick);
+        Shoot();
         Flash();
         Invincibility();
 
@@ -139,6 +145,45 @@ public class myplayer : MonoBehaviour
 
         transform.localScale = scale;
     }   
+
+    private void Shoot()
+    {
+        if (Input.GetKey(shootKey) && canShoot)
+        {
+            canShoot = false;
+
+            Vector2 dir;
+
+            Projectile fireBall = Instantiate<Projectile>(projectilePrefab);
+            fireBall.transform.position = transform.position;
+
+            Vector2 pos = fireBall.transform.position;
+
+            if (transform.localScale.x > 0)
+            {
+                dir = Vector2.right;
+                pos.x += 1;
+            }
+            else
+            {
+                dir = Vector2.left;
+                pos.x -= 1;
+            }
+
+            pos.y += 2;
+            fireBall.transform.position = pos;
+            fireBall.Dir = dir;
+        }   
+        else if (!canShoot) 
+        {
+            shootDelayTimer += Time.deltaTime;
+            if (shootDelayTimer >= shootDelay)
+            {
+                shootDelayTimer = 0f;
+                canShoot = true;
+            }
+        }
+    }
 
     private void Attack(string varible, KeyCode key) 
     {

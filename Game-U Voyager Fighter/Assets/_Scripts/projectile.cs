@@ -1,11 +1,21 @@
 ﻿// Copyright 2018 Game-U Enterprises, LLC
 using UnityEngine;
 
-public class projectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
+    private const float SPEED = 10f;
+
+    public Vector2 Dir;
+
     void Start()
     {
-        GetComponent<Rigidbody2D>().linearVelocity = transform.right * 20f;
+    }
+
+    void Update()
+    {
+        Vector2 pos = transform.position;
+        pos.x += Dir.x * Time.deltaTime * SPEED;
+        transform.position = pos;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
